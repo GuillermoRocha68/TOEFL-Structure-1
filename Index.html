@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL Structure and Written Expression - C1 Practice Test</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --primary-light: #2b6cb0;
+            --secondary-color: #f5f7fa;
+            --text-main: #2d3748;
+            --text-light: #4a5568;
+            --accent-green: #38a169;
+            --accent-red: #e53e3e;
+            --border-color: #e2e8f0;
+            --bg-body: #edf2f7;
+            --bg-card: #ffffff;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Login Screen */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .input-group input {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        button:disabled {
+            background-color: var(--text-light);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Test Layout */
+        .test-layout {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Question Area */
+        .section-indicator {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary-light);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .question-text u {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-label:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--primary-light);
+        }
+
+        .option-input {
+            margin-right: 1rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
+        }
+
+        .option-label.selected {
+            border-color: var(--primary-light);
+            background-color: #ebf8ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Sidebar Navigator */
+        .navigator-card {
+            align-self: start;
+            position: sticky;
+            top: 5rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-light);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .grid-nav {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+
+        .grid-btn {
+            padding: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            background: white;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .grid-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .grid-btn.answered {
+            background: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .grid-btn.current {
+            border-color: var(--primary-light);
+            border-width: 2px;
+            font-weight: bold;
+        }
+
+        /* Results & Review */
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .score-box {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .score-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-item {
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+        }
+
+        .review-item.correct {
+            border-left: 5px solid var(--accent-green);
+        }
+
+        .review-item.incorrect {
+            border-left: 5px solid var(--accent-red);
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fffaf0;
+            border-radius: 0.375rem;
+            font-size: 0.9rem;
+            border: 1px solid #feebc8;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            header, .nav-buttons, .navigator-card, .no-print {
+                display: none !important;
+            }
+            main, .card {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            .test-layout {
+                display: block;
+            }
+            .review-item {
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .test-layout {
+                grid-template-columns: 1fr;
+            }
+            .navigator-card {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">TOEFL Structure & Written Expression (C1)</div>
+        <div id="timer-display" class="timer-container hidden" aria-live="polite">
+            ⏱ <span id="time-left">20:00</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Login Screen -->
+        <section id="login-screen" class="card">
+            <h1 style="margin-bottom: 1rem; color: var(--primary-color);">Candidate Information</h1>
+            <p style="margin-bottom: 2rem; color: var(--text-light);">Please complete the information below to begin the practice test. You will have 20 minutes to complete 50 questions.</p>
+            
+            <div class="input-group">
+                <label for="student-name">Candidate Name</label>
+                <input type="text" id="student-name" placeholder="Enter your full name" required aria-required="true">
+            </div>
+            
+            <div class="input-group">
+                <label for="test-date">Test Date</label>
+                <input type="date" id="test-date" required aria-required="true">
+            </div>
+            
+            <button id="start-btn">Start Test</button>
+        </section>
+
+        <!-- Test Screen -->
+        <section id="test-screen" class="test-layout hidden">
+            <div class="card question-card">
+                <div id="section-indicator" class="section-indicator">SECTION A: STRUCTURE</div>
+                <div id="question-header" style="font-weight: bold; margin-bottom: 1rem;">Question 1 of 50</div>
+                <div id="question-text" class="question-text"></div>
+                <div id="options-container" class="options-container" role="radiogroup">
+                    <!-- Options injected via JS -->
+                </div>
+                
+                <div class="nav-buttons">
+                    <button id="prev-btn">Previous</button>
+                    <button id="next-btn">Next</button>
+                    <button id="submit-btn" class="hidden" style="background-color: var(--accent-green);">Submit Test</button>
+                </div>
+            </div>
+
+            <div class="card navigator-card">
+                <h3 style="margin-bottom: 1rem;">Progress</h3>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="answered-count">0/50 Answered</span>
+                    <span id="percentage-count">0%</span>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1rem;">Question Navigator</h3>
+                <div id="grid-nav" class="grid-nav">
+                    <!-- Grid generated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section id="results-screen" class="hidden">
+            <div class="card results-header">
+                <h1 style="color: var(--primary-color);">Test Results</h1>
+                <p id="student-info-display" style="font-size: 1.1rem; margin-top: 0.5rem;"></p>
+                <p id="time-used-display" style="color: var(--text-light);"></p>
+            </div>
+
+            <div class="score-grid">
+                <div class="score-box">
+                    <div>Structure Section</div>
+                    <div id="score-structure" class="score-val">0 / 25</div>
+                </div>
+                <div class="score-box">
+                    <div>Written Expression</div>
+                    <div id="score-written" class="score-val">0 / 25</div>
+                </div>
+                <div class="score-box">
+                    <div>Total Score</div>
+                    <div id="score-total" class="score-val">0 / 50</div>
+                    <div id="score-percentage" style="font-weight: bold; color: var(--text-light);">0%</div>
+                </div>
+                <div class="score-box">
+                    <div>CEFR Level</div>
+                    <div id="cefr-level" class="score-val" style="color: var(--accent-green);">--</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 style="margin-bottom: 1rem;">Performance Summary</h2>
+                <div id="cefr-desc" style="margin-bottom: 1rem; font-weight: 500;"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent-green); margin-bottom: 0.5rem;">Strengths</h3>
+                        <p id="feedback-strengths"></p>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-red); margin-bottom: 0.5rem;">Recommended Study Areas</h3>
+                        <p id="feedback-weaknesses"></p>
+                    </div>
+                </div>
+                <div class="nav-buttons no-print" style="border-top: none; justify-content: flex-start; gap: 1rem; margin-top: 2rem;">
+                    <button id="view-review-btn">Review All Answers</button>
+                    <button id="print-btn" style="background-color: var(--text-main);">Print / Download PDF</button>
+                    <button id="restart-btn" style="background-color: var(--text-light);">Restart Test</button>
+                </div>
+            </div>
+            
+            <div id="incorrect-answers-container" class="card hidden">
+                <h2 style="margin-bottom: 1.5rem; color: var(--accent-red);">Incorrect Answers Review</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-main);">Here are the questions you answered incorrectly, along with the correct answers and explanations.</p>
+                <div id="incorrect-answers-list" class="review-list">
+                    <!-- Incorrect items injected via JS -->
+                </div>
+            </div>
+
+            <div id="review-container" class="card hidden">
+                <h2 style="margin-bottom: 1.5rem;">Detailed Review (All Questions)</h2>
+                <div id="review-list" class="review-list">
+                    <!-- Review items injected via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // ---------------------------------------------------------
+        // 1. DATA: 50 C1-Level TOEFL Questions (NEW SHUFFLED SET 4)
+        // ---------------------------------------------------------
+        const questions = [
+            // --- SECTION A: STRUCTURE (1-25) ---
+            { id: 1, section: 'A', text: "Not until the early 20th century ________ the fundamental mechanisms of genetics.", options: ["scientists fully understood", "did scientists fully understand", "that scientists fully understood", "understood scientists fully"], correct: 1, explanation: "Negative Inversion: Sentences beginning with a restrictive phrase like 'Not until' require auxiliary inversion ('did scientists fully understand')." },
+            { id: 2, section: 'A', text: "The ethics committee mandated that the ongoing psychological experiment ________ immediately due to unforeseen risks.", options: ["be suspended", "is suspended", "must be suspended", "suspends"], correct: 0, explanation: "Subjunctive Mood: Verbs of mandating require a 'that' clause with the base form of the verb, often in the passive voice ('be suspended')." },
+            { id: 3, section: 'A', text: "________ the early warning signs, the financial institution might have avoided the catastrophic bankruptcy.", options: ["If the auditors recognized", "Recognizing the auditors", "Had the auditors recognized", "Have the auditors recognized"], correct: 2, explanation: "Third Conditional Inversion: 'Had the auditors recognized' is the formal, inverted equivalent of 'If the auditors had recognized'." },
+            { id: 4, section: 'A', text: "________ on the pristine Galapagos Islands, the unique species of finch played a pivotal role in Darwin's theory.", options: ["It was studied", "Studying", "Studied", "Having studying"], correct: 2, explanation: "Reduced Relative/Participle Clause: 'Studied' is a passive past participle modifying the subject 'the unique species', short for 'Because it was studied'." },
+            { id: 5, section: 'A', text: "Not only ________ a profound influence on modern architecture, but he also revolutionized urban planning.", options: ["Frank Lloyd Wright had", "did Frank Lloyd Wright have", "had Frank Lloyd Wright", "Frank Lloyd Wright having"], correct: 1, explanation: "Correlative Conjunctions: 'Not only... but also'. When 'not only' begins the first clause, it requires subject-auxiliary inversion." },
+            { id: 6, section: 'A', text: "The controversial hypothesis, ________ viral mutations can spontaneously reverse, remains fiercely debated.", options: ["which", "of which", "how", "that"], correct: 3, explanation: "Appositive Noun Clause: 'that' correctly renames and defines the abstract noun 'hypothesis' before presenting the full descriptive clause." },
+            { id: 7, section: 'A', text: "By the time the international climate summit concludes next week, the delegates ________ a comprehensive emissions treaty.", options: ["will have drafted", "will draft", "have drafted", "are drafting"], correct: 0, explanation: "Future Perfect Tense: 'By the time + future event' necessitates the future perfect ('will have drafted') to describe an action completed before that future moment." },
+            { id: 8, section: 'A', text: "________ the ancient Polynesian navigators accurately traversed vast ocean distances remains a marvel of human ingenuity.", options: ["How", "That", "What", "Because"], correct: 0, explanation: "Noun Clause Subject: 'How' logically introduces the noun clause that functions as the entire subject of the sentence." },
+            { id: 9, section: 'A', text: "The aggressive marketing campaign was designed not to alienate older consumers, but rather ________ a younger demographic.", options: ["attracting", "to attract", "for attracting", "attract"], correct: 1, explanation: "Parallel Structure: 'not to alienate... but rather to attract'. The infinitives must be parallel." },
+            { id: 10, section: 'A', text: "________ the severe limitations of the current technology, the engineers opted for a completely novel approach.", options: ["Recognized", "Recognize", "To recognize", "Recognizing"], correct: 3, explanation: "Present Participle Phrase: 'Recognizing' correctly acts as an active participial phrase modifying the subject 'the engineers'." },
+            { id: 11, section: 'A', text: "________ the unprecedented global economic sanctions, the authoritarian regime refused to alter its foreign policy.", options: ["Although", "However", "Despite", "Because of"], correct: 2, explanation: "Prepositional Phrase: 'Despite' correctly functions as a preposition taking the noun phrase 'the unprecedented global economic sanctions'." },
+            { id: 12, section: 'A', text: "The more complex the algorithmic model becomes, ________ it is for laypeople to comprehend its decision-making process.", options: ["most difficult", "the more difficult", "difficult more", "the most difficult"], correct: 1, explanation: "Double Comparative: The structure requires 'The more [adjective]... the more [adjective]'. Therefore, 'the more difficult' is the correct counterpart." },
+            { id: 13, section: 'A', text: "Even if the initial prototype succeeds, the aerospace company ________ to conduct rigorous aerodynamic testing.", options: ["will still need", "needs still", "will need still", "still needing"], correct: 0, explanation: "Adverb Placement / Future Tense: The main clause requires a future tense verb, and the adverb 'still' correctly goes between the auxiliary and main verb ('will still need')." },
+            { id: 14, section: 'A', text: "Only by implementing comprehensive, multinational conservation strategies ________ the rapid extinction of endangered species.", options: ["we can halt", "can we halt", "halt we can", "we halt"], correct: 1, explanation: "Inversion with 'Only by': Sentences beginning with a restrictive prepositional phrase like 'Only by' require auxiliary inversion in the main clause." },
+            { id: 15, section: 'A', text: "The specific socio-economic factors ________ the demographic shift occurred are meticulously detailed in the sociological study.", options: ["where", "that", "under which", "which"], correct: 2, explanation: "Preposition + Relative Pronoun: A shift occurs 'under' specific factors, so the formal relative clause requires 'under which'." },
+            { id: 16, section: 'A', text: "To ensure maximum structural integrity, the chief architect had the foundational blueprints ________ by an independent engineering firm.", options: ["reviewed", "reviewing", "to review", "review"], correct: 0, explanation: "Causative Verb (Passive): 'Have something done' (have + object + past participle) indicates that an action was performed on the object by someone else." },
+            { id: 17, section: 'A', text: "It is absolutely vital that every participant in the longitudinal study ________ their informed consent prior to data collection.", options: ["provides", "provided", "is providing", "provide"], correct: 3, explanation: "Subjunctive Mood: Adjectives of urgency like 'vital' mandate a 'that' clause with the base form of the verb ('provide'), regardless of the singular subject." },
+            { id: 18, section: 'A', text: "________ the dense rainforest canopy, the botanical researchers discovered a previously undocumented species of orchid.", options: ["Surveyed", "While surveying", "During survey", "To survey"], correct: 1, explanation: "Reduced Adverbial Clause: 'While surveying' is the proper and active reduction of 'While they were surveying'." },
+            { id: 19, section: 'A', text: "________ initially dismissed as a highly implausible theory, continental drift is now the cornerstone of modern geology.", options: ["Although", "Because", "Since", "Despite"], correct: 0, explanation: "Concessive Clause (Reduced): 'Although' is a conjunction that can introduce a reduced clause ('Although [it was] initially dismissed')." },
+            { id: 20, section: 'A', text: "The sudden, widespread proliferation of the invasive aquatic plant is largely attributable ________ the absence of natural predators.", options: ["for", "with", "by", "to"], correct: 3, explanation: "Prepositional Idiom: The adjective 'attributable' is almost always followed by the preposition 'to'." },
+            { id: 21, section: 'A', text: "If the ancient Library of Alexandria had not been tragically destroyed, our understanding of antiquity ________ vastly more comprehensive today.", options: ["will be", "would have been", "would be", "had been"], correct: 2, explanation: "Mixed Conditional: A past unreal condition ('had not been destroyed') leading to a present unreal result ('...today') requires 'would + base verb' in the main clause." },
+            { id: 22, section: 'A', text: "No sooner ________ the controversial legislation than widespread, organized protests erupted across the capital.", options: ["the parliament had passed", "had the parliament passed", "did the parliament pass", "passed the parliament"], correct: 1, explanation: "Inversion with 'No sooner': Requires past perfect inversion ('had' + subject + past participle) followed by 'than' in the subsequent clause." },
+            { id: 23, section: 'A', text: "________ a fragile geopolitical consensus requires extraordinary diplomatic finesse and endless patience.", options: ["Maintaining", "Maintain", "To maintaining", "Maintained"], correct: 0, explanation: "Gerund Phrase as Subject: The gerund 'Maintaining' correctly functions as the subject for the singular verb 'requires'." },
+            { id: 24, section: 'A', text: "The advanced echolocation capabilities of dolphins are frequently compared by marine biologists to ________ of certain bat species.", options: ["that", "these", "which", "those"], correct: 3, explanation: "Demonstrative Pronoun: 'Those' is the necessary plural pronoun to replace 'capabilities' to avoid repetition." },
+            { id: 25, section: 'A', text: "The quantum physicist struggled to articulate to the journalists ________ without resorting to complex mathematical jargon.", options: ["how subatomic particles interact", "how do subatomic particles interact", "how interact subatomic particles", "subatomic particles interact how"], correct: 0, explanation: "Embedded Question / Noun Clause: Inside a statement, question word order reverts to standard subject-verb order ('how subatomic particles interact')." },
+
+            // --- SECTION B: WRITTEN EXPRESSION (26-50) ---
+            { id: 26, section: 'B', text: "The unexpected (A) <u>discovery</u> of numerous ancient artifacts in the subterranean cave (B) <u>has</u> forced historians to (C) <u>reevaluate</u> their understanding of early human (D) <u>migrating</u>.", options: ["discovery", "has", "reevaluate", "migrating"], correct: 3, explanation: "Word Form: A noun phrase is needed at the end of the sentence. It should be 'human migration', not the gerund/participle 'migrating'." },
+            { id: 27, section: 'B', text: "The (A) <u>innovation</u> architectural design seeks to transform the (B) <u>former</u> industrial wasteland into a lush, (C) <u>sustainable</u>, and (D) <u>environmentally</u> friendly public park.", options: ["innovation", "former", "sustainable", "environmentally"], correct: 0, explanation: "Word Form: An adjective is required to modify the noun 'design'. It should be 'innovative', not the noun 'innovation'." },
+            { id: 28, section: 'B', text: "An effective public health strategy (A) <u>requires</u> robust data collection, rapid outbreak identification, and (B) <u>distributing</u> vaccines efficiently to (C) <u>vulnerability</u> demographic (D) <u>groups</u>.", options: ["requires", "distributing", "vulnerability", "groups"], correct: 2, explanation: "Word Form: An adjective is required to modify the noun 'groups'. It should be 'vulnerable', not the noun 'vulnerability'." },
+            { id: 29, section: 'B', text: "Despite (A) <u>its</u> formidable defensive capabilities, the armadillo relies (B) <u>primarily</u> on its acute sense of smell, demonstrating an evolutionary trait perfectly suited to (C) <u>the</u> specific (D) <u>their</u> habitat.", options: ["its", "primarily", "the", "their"], correct: 3, explanation: "Pronoun Agreement: 'The armadillo' is singular (as established by the first 'its'). The later possessive pronoun must also be singular ('its'), not 'their'." },
+            { id: 30, section: 'B', text: "The brilliant (A) <u>mathematics</u>, whose groundbreaking (B) <u>theorem</u> resolved a century-old academic puzzle, was recently (C) <u>awarded</u> the most prestigious (D) <u>international</u> prize in the field.", options: ["mathematics", "theorem", "awarded", "international"], correct: 0, explanation: "Noun Form for People: The sentence requires a noun referring to a person who solves puzzles. It should be 'mathematician', not the subject 'mathematics'." },
+            { id: 31, section: 'B', text: "The newly developed (A) <u>synthetic</u> fiber exhibits a thermal resistance that is significantly (B) <u>superior than</u> (C) <u>that of</u> the older material previously favored by the manufacturing (D) <u>industry</u>.", options: ["synthetic", "superior than", "that of", "industry"], correct: 1, explanation: "Prepositional Idiom: In formal English, the adjective 'superior' is always followed by the preposition 'to', never 'than'." },
+            { id: 32, section: 'B', text: "(A) <u>A</u> profound, nuanced understanding of molecular biology is absolutely critical for (B) <u>anyone</u> aspiring to conduct groundbreaking research in (C) <u>modern</u> (D) <u>the genetics</u>.", options: ["A", "anyone", "modern", "the genetics"], correct: 3, explanation: "Article Usage: Academic disciplines like 'genetics' generally do not take the definite article 'the' unless specifically restricted." },
+            { id: 33, section: 'B', text: "The completely unforeseen (A) <u>collapse</u> of the massive ice shelf (B) <u>have</u> triggered profound scientific concern (C) <u>about</u> the accelerating rate of global (D) <u>warming</u>.", options: ["collapse", "have", "about", "warming"], correct: 1, explanation: "Subject-Verb Agreement: The singular subject 'collapse' requires the singular verb 'has', not 'have'." },
+            { id: 34, section: 'B', text: "(A) <u>Not only the</u> severe, prolonged drought cause massive agricultural losses, (B) <u>but</u> it also contributed directly to (C) <u>economic</u> instability throughout the entire (D) <u>region</u>.", options: ["Not only the", "but", "economic", "region"], correct: 0, explanation: "Inversion: Sentences beginning with 'Not only' require subject-auxiliary inversion. It should be 'Not only did the severe... drought cause'." },
+            { id: 35, section: 'B', text: "(A) <u>Exhausted</u> by the grueling, multi-day mountain ascent, the experienced climbing expedition (B) <u>wisely</u> decided to establish a base camp before (C) <u>attempt</u> the final (D) <u>summit</u>.", options: ["Exhausted", "wisely", "attempt", "summit"], correct: 2, explanation: "Gerund after Preposition: Prepositions (like 'before') must be followed by a noun or a gerund. It should be 'attempting', not the base verb 'attempt'." },
+            { id: 36, section: 'B', text: "Had the international regulatory bodies (A) <u>enforced</u> stricter emission standards earlier, the devastating ecological consequences (B) <u>would have been</u> largely (C) <u>mitigated</u> by the turn of the (D) <u>centuries</u>.", options: ["enforced", "would have been", "mitigated", "centuries"], correct: 3, explanation: "Singular vs. Plural: The idiomatic expression referring to the transition from one century to the next is 'the turn of the century' (singular), not 'centuries'." },
+            { id: 37, section: 'B', text: "The complex, deeply theoretical sociological framework (A) <u>outlining</u> in the professor's latest book is (B) <u>based on</u> the assertion that societal structures are inherently (C) <u>fluid</u> and (D) <u>adaptable</u>.", options: ["outlining", "based on", "fluid", "adaptable"], correct: 0, explanation: "Participle Form: The framework receives the action of being outlined. It must be the past participle 'outlined', not the active present participle 'outlining'." },
+            { id: 38, section: 'B', text: "One of the most (A) <u>critical</u> and hotly debated geopolitical (B) <u>issues</u> of our time is the equitable (C) <u>distribute</u> of increasingly scarce natural (D) <u>resources</u>.", options: ["critical", "issues", "distribute", "resources"], correct: 2, explanation: "Word Form: A noun is required after the adjective 'equitable'. It should be 'distribution', not the verb 'distribute'." },
+            { id: 39, section: 'B', text: "The primary (A) <u>reason</u> the ambitious renewable energy initiative failed to (B) <u>securing</u> adequate federal funding was (C) <u>that</u> it lacked a clearly defined logistical (D) <u>framework</u>.", options: ["reason", "securing", "that", "framework"], correct: 1, explanation: "Infinitive Phrase: The verb 'failed' is followed by a 'to' infinitive. It should be 'failed to secure', not 'securing'." },
+            { id: 40, section: 'B', text: "The leading epidemiologist strongly (A) <u>recommended</u> that the local government (B) <u>implement</u> stringent quarantine measures immediately to (C) <u>curtail</u> the rapid spread of the highly (D) <u>contagion</u> pathogen.", options: ["recommended", "implement", "curtail", "contagion"], correct: 3, explanation: "Word Form: An adjective is required to modify the noun 'pathogen'. It should be 'contagious', not the noun 'contagion'." },
+            { id: 41, section: 'B', text: "The critically acclaimed actor delivered the emotionally complex, highly demanding monologue so (A) <u>brilliantly</u> that the (B) <u>entire</u> theater erupted into a spontaneous, (C) <u>deafeningly</u> round of (D) <u>applause</u>.", options: ["brilliantly", "entire", "deafeningly", "applause"], correct: 2, explanation: "Word Form: An adjective is required to modify the noun 'round'. It should be 'deafening', not the adverb 'deafeningly'." },
+            { id: 42, section: 'B', text: "Due to the (A) <u>exception</u> harsh winter conditions this year, the regional orchards yielded very (B) <u>little</u> produce, resulting in a noticeable (C) <u>scarcity</u> in the national (D) <u>supermarkets</u>.", options: ["exception", "little", "scarcity", "supermarkets"], correct: 0, explanation: "Word Form: An adverb is needed to modify the adjective 'harsh'. It should be 'exceptionally', not the noun 'exception'." },
+            { id: 43, section: 'B', text: "Neither the principal architect (A) <u>nor</u> the contracted structural engineers (B) <u>were</u> able to definitively (C) <u>pinpoint</u> the exact cause of the (D) <u>glaringly</u> structural flaws.", options: ["nor", "were", "pinpoint", "glaringly"], correct: 3, explanation: "Word Form: An adjective is needed to modify the noun phrase 'structural flaws'. It should be 'glaring', not the adverb 'glaringly'." },
+            { id: 44, section: 'B', text: "Scarcely (A) <u>had</u> the renowned symphony orchestra begun to play the intricate overture (B) <u>when</u> the concert hall's fire alarm abruptly (C) <u>sound</u>, prompting an immediate (D) <u>evacuation</u>.", options: ["had", "when", "sound", "evacuation"], correct: 2, explanation: "Verb Tense: The action occurred in the past, parallel to the past perfect action before it. It should be the simple past 'sounded', not the base verb 'sound'." },
+            { id: 45, section: 'B', text: "The ancient Roman aqueduct, (A) <u>whose</u> remarkable engineering principles still (B) <u>fascinating</u> modern hydrologists, transported (C) <u>millions</u> of gallons of fresh water (D) <u>daily</u>.", options: ["whose", "fascinating", "millions", "daily"], correct: 1, explanation: "Main Verb Required: The relative clause requires a finite verb, not a participle. It should be 'fascinate', not 'fascinating'." },
+            { id: 46, section: 'B', text: "(A) <u>To combat</u> the escalating crisis of ocean plastic pollution, coastal nations must aggressively prioritize recycling, (B) <u>ban</u> single-use plastics, and (C) <u>invest</u> heavily in biodegradable (D) <u>alternate</u>.", options: ["To combat", "ban", "invest", "alternate"], correct: 3, explanation: "Word Form/Plurality: A plural noun is required here to serve as the object of 'in'. It should be 'alternatives', not the adjective/singular noun 'alternate'." },
+            { id: 47, section: 'B', text: "The newly appointed director of operations brings a (A) <u>vastly</u> amount of invaluable corporate (B) <u>experience</u> to the floundering tech startup, (C) <u>ensuring</u> a comprehensive strategic (D) <u>overhaul</u>.", options: ["vastly", "experience", "ensuring", "overhaul"], correct: 0, explanation: "Word Form: An adjective is required to modify the noun 'amount'. It should be 'vast', not the adverb 'vastly'." },
+            { id: 48, section: 'B', text: "(A) <u>Despite</u> the extensive, publicly funded restoration efforts (B) <u>undertaken</u> by the historical society, the dilapidated 18th-century mansion remains (C) <u>uninhabit</u>, (D) <u>frustrating</u> local preservationists.", options: ["Despite", "undertaken", "uninhabit", "frustrating"], correct: 2, explanation: "Word Form: An adjective is required after the linking verb 'remains'. It should be 'uninhabitable', not the verb 'uninhabit'." },
+            { id: 49, section: 'B', text: "Not only (A) <u>did the unprecedented cyberattack severely compromise</u> highly sensitive government data, (B) <u>and it also</u> completely paralyzed the central communication (C) <u>networks</u> for several (D) <u>days</u>.", options: ["did the unprecedented cyberattack severely compromise", "and it also", "networks", "days"], correct: 1, explanation: "Correlative Conjunctions: 'Not only' must be paired with 'but also'. It should be 'but it also', not 'and it also'." },
+            { id: 50, section: 'B', text: "The highly coveted, fully endowed research fellowship will be formally (A) <u>granting</u> to (B) <u>whoever</u> most convincingly outlines a (C) <u>viable</u> methodology for advancing (D) <u>renewable</u> energy capture.", options: ["granting", "whoever", "viable", "renewable"], correct: 0, explanation: "Passive Voice Form: The fellowship receives the action. It must be the past participle 'granted' (will be granted), not the present active participle 'granting'." }
+        ];
+
+        // ---------------------------------------------------------
+        // 2. STATE VARIABLES
+        // ---------------------------------------------------------
+        let currentQuestionIndex = 0;
+        let answers = new Array(50).fill(null);
+        let studentName = "";
+        let testDate = "";
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let timerInterval;
+
+        // ---------------------------------------------------------
+        // 3. DOM ELEMENTS
+        // ---------------------------------------------------------
+        const loginScreen = document.getElementById('login-screen');
+        const testScreen = document.getElementById('test-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        const nameInput = document.getElementById('student-name');
+        const dateInput = document.getElementById('test-date');
+        const startBtn = document.getElementById('start-btn');
+        
+        const timerDisplay = document.getElementById('timer-display');
+        const timeLeftSpan = document.getElementById('time-left');
+        
+        const sectionIndicator = document.getElementById('section-indicator');
+        const questionHeader = document.getElementById('question-header');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        const progressFill = document.getElementById('progress-fill');
+        const answeredCount = document.getElementById('answered-count');
+        const percentageCount = document.getElementById('percentage-count');
+        const gridNav = document.getElementById('grid-nav');
+
+        // ---------------------------------------------------------
+        // 4. INITIALIZATION & LOGIN LOGIC
+        // ---------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enable/disable start button based on inputs
+            const checkInputs = () => {
+                startBtn.disabled = !(nameInput.value.trim() && dateInput.value);
+            };
+            nameInput.addEventListener('input', checkInputs);
+            dateInput.addEventListener('input', checkInputs);
+            checkInputs();
+
+            startBtn.addEventListener('click', startTest);
+            prevBtn.addEventListener('click', () => navigate(-1));
+            nextBtn.addEventListener('click', () => navigate(1));
+            submitBtn.addEventListener('click', submitTest);
+            
+            document.getElementById('view-review-btn').addEventListener('click', showReview);
+            document.getElementById('print-btn').addEventListener('click', () => {
+                const printWin = window.open('', '_blank');
+                if (printWin) {
+                    printWin.document.write('<html><head><title>Test Results</title><style>' + document.querySelector('style').innerHTML + '</style></head><body>' + document.getElementById('results-screen').innerHTML + '</body></html>');
+                    printWin.document.close();
+                    setTimeout(() => printWin.print(), 300);
+                } else {
+                    window.print();
+                }
+            });
+            document.getElementById('restart-btn').addEventListener('click', restartTest);
+        });
+
+        function startTest() {
+            studentName = nameInput.value.trim();
+            testDate = dateInput.value;
+            
+            loginScreen.classList.add('hidden');
+            testScreen.classList.remove('hidden');
+            timerDisplay.classList.remove('hidden');
+            
+            buildGridNav();
+            renderQuestion(0);
+            startTimer();
+        }
+
+        // ---------------------------------------------------------
+        // 5. TEST NAVIGATION & RENDERING LOGIC
+        // ---------------------------------------------------------
+        function buildGridNav() {
+            gridNav.innerHTML = '';
+            for (let i = 0; i < questions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'grid-btn';
+                btn.textContent = i + 1;
+                btn.onclick = () => renderQuestion(i);
+                gridNav.appendChild(btn);
+            }
+        }
+
+        function renderQuestion(index) {
+            currentQuestionIndex = index;
+            const q = questions[index];
+            
+            // Update Headers
+            sectionIndicator.textContent = q.section === 'A' 
+                ? "SECTION A: STRUCTURE (Questions 1-25)" 
+                : "SECTION B: WRITTEN EXPRESSION (Questions 26-50)";
+            questionHeader.textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            // Update Question Text
+            questionText.innerHTML = q.text;
+            
+            // Render Options
+            optionsContainer.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+            
+            q.options.forEach((optText, i) => {
+                const isSelected = answers[index] === i;
+                
+                const label = document.createElement('label');
+                label.className = `option-label ${isSelected ? 'selected' : ''}`;
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `question-${index}`;
+                input.className = 'option-input';
+                input.checked = isSelected;
+                input.onchange = () => selectOption(i);
+                
+                const span = document.createElement('span');
+                if (q.section === 'A') {
+                    span.textContent = `${labels[i]}. ${optText}`;
+                } else {
+                    span.innerHTML = `<strong>${labels[i]}.</strong> ${optText}`;
+                }
+
+                label.appendChild(input);
+                label.appendChild(span);
+                optionsContainer.appendChild(label);
+            });
+
+            // Button states
+            prevBtn.disabled = index === 0;
+            if (index === questions.length - 1) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            updateProgressAndNav();
+        }
+
+        function selectOption(optIndex) {
+            answers[currentQuestionIndex] = optIndex;
+            
+            // Visually update current options
+            const labels = optionsContainer.querySelectorAll('.option-label');
+            labels.forEach((label, i) => {
+                if (i === optIndex) label.classList.add('selected');
+                else label.classList.remove('selected');
+            });
+            
+            updateProgressAndNav();
+        }
+
+        function navigate(direction) {
+            const newIndex = currentQuestionIndex + direction;
+            if (newIndex >= 0 && newIndex < questions.length) {
+                renderQuestion(newIndex);
+            }
+        }
+
+        function updateProgressAndNav() {
+            const answered = answers.filter(a => a !== null).length;
+            const pct = Math.round((answered / questions.length) * 100);
+            
+            progressFill.style.width = `${pct}%`;
+            answeredCount.textContent = `${answered}/${questions.length} Answered`;
+            percentageCount.textContent = `${pct}%`;
+
+            // Update Grid visually
+            const btns = gridNav.querySelectorAll('.grid-btn');
+            btns.forEach((btn, i) => {
+                btn.className = 'grid-btn'; // reset
+                if (answers[i] !== null) btn.classList.add('answered');
+                if (i === currentQuestionIndex) btn.classList.add('current');
+            });
+        }
+
+        // ---------------------------------------------------------
+        // 6. TIMER LOGIC
+        // ---------------------------------------------------------
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timeLeftSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            if (timeLeft < 120) { // last 2 minutes
+                timerDisplay.style.color = '#feb2b2';
+                timerDisplay.style.background = 'rgba(229, 62, 62, 0.9)';
+            }
+        }
+
+        // ---------------------------------------------------------
+        // 7. SCORING & RESULTS LOGIC
+        // ---------------------------------------------------------
+        function submitTest() {
+            clearInterval(timerInterval);
+            testScreen.classList.add('hidden');
+            timerDisplay.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            let scoreA = 0;
+            let scoreB = 0;
+
+            questions.forEach((q, i) => {
+                if (answers[i] === q.correct) {
+                    if (q.section === 'A') scoreA++;
+                    else scoreB++;
+                }
+            });
+
+            const totalScore = scoreA + scoreB;
+            const percentage = Math.round((totalScore / 50) * 100);
+            const timeUsed = (20 * 60) - timeLeft;
+            const minUsed = Math.floor(timeUsed / 60);
+            const secUsed = timeUsed % 60;
+
+            // Update DOM
+            document.getElementById('student-info-display').textContent = `Candidate: ${studentName} | Date: ${testDate}`;
+            document.getElementById('time-used-display').textContent = `Time Used: ${minUsed}m ${secUsed}s`;
+            
+            document.getElementById('score-structure').textContent = `${scoreA} / 25`;
+            document.getElementById('score-written').textContent = `${scoreB} / 25`;
+            document.getElementById('score-total').textContent = `${totalScore} / 50`;
+            document.getElementById('score-percentage').textContent = `${percentage}%`;
+
+            // CEFR Estimation
+            let cefr = "";
+            let desc = "";
+            if (percentage >= 95) { cefr = "C2"; desc = "Mastery. Exceptional command of complex English grammar."; }
+            else if (percentage >= 85) { cefr = "C1+"; desc = "Advanced Plus. Highly proficient with nuanced structures."; }
+            else if (percentage >= 75) { cefr = "C1"; desc = "Advanced. Solid operational command of C1-level academic English."; }
+            else if (percentage >= 65) { cefr = "B2+"; desc = "Upper Intermediate Plus. Good control but occasional inaccuracies with complex forms."; }
+            else if (percentage >= 55) { cefr = "B2"; desc = "Upper Intermediate. Can handle basic academic texts but struggles with C1 nuances."; }
+            else if (percentage >= 45) { cefr = "B1+"; desc = "Intermediate Plus. Needs significant review of advanced grammar and editing."; }
+            else if (percentage >= 35) { cefr = "B1"; desc = "Intermediate. Limited control over complex sentences."; }
+            else { cefr = "A2-B1"; desc = "Pre-Intermediate. Reassessment recommended with lower-level diagnostic."; }
+
+            document.getElementById('cefr-level').textContent = cefr;
+            document.getElementById('cefr-desc').textContent = desc;
+
+            // Feedback Generation
+            let strengths = "You attempted all sections of the test.";
+            let weaknesses = "Review fundamental grammar rules.";
+            
+            if (percentage >= 75) {
+                strengths = "Excellent grasp of complex academic sentence structures, subordination, and error identification.";
+                weaknesses = "Focus on edge-case exceptions, particularly rare inversions and advanced idiomatic preposition usage.";
+            } else if (scoreA > scoreB + 3) {
+                strengths = "Good intuition for sentence completion and overall structural flow.";
+                weaknesses = "Your editing skills (Written Expression) need work. Focus on identifying subtle errors in subject-verb agreement, parallelism, and word forms within dense sentences.";
+            } else if (scoreB > scoreA + 3) {
+                strengths = "Strong proofreading skills and ability to identify grammatical errors in existing text.";
+                weaknesses = "Sentence construction (Structure) is an area for growth. Review subordinating conjunctions, reduced relative clauses, and inversion.";
+            } else {
+                strengths = "Balanced performance across both structure creation and error identification.";
+                weaknesses = "General review of C1 level grammar is required. Focus heavily on subjunctive mood, complex gerund/infinitive phrases, and advanced conditional structures.";
+            }
+
+            document.getElementById('feedback-strengths').textContent = strengths;
+            document.getElementById('feedback-weaknesses').textContent = weaknesses;
+
+            buildIncorrectReview();
+            buildReview();
+        }
+
+        // ---------------------------------------------------------
+        // 8. REVIEW MODE
+        // ---------------------------------------------------------
+        function buildIncorrectReview() {
+            const list = document.getElementById('incorrect-answers-list');
+            list.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+            let hasIncorrect = false;
+
+            questions.forEach((q, i) => {
+                const studentAns = answers[i];
+                const isCorrect = studentAns === q.correct;
+                
+                if (!isCorrect) {
+                    hasIncorrect = true;
+                    const item = document.createElement('div');
+                    item.className = 'review-item incorrect';
+                    
+                    let html = `
+                        <div style="font-weight: bold; color: var(--primary-color);">Question ${i + 1} (${q.section === 'A' ? 'Structure' : 'Written Expression'})</div>
+                        <div style="margin: 0.5rem 0 1rem 0; font-size: 1.1rem;">${q.text}</div>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                    `;
+
+                    q.options.forEach((opt, optIdx) => {
+                        let color = "inherit";
+                        let weight = "normal";
+                        let marker = "";
+                        
+                        if (optIdx === q.correct) {
+                            color = "var(--accent-green)";
+                            weight = "bold";
+                            marker = " ✓ (Correct Answer)";
+                        } else if (optIdx === studentAns) {
+                            color = "var(--accent-red)";
+                            weight = "bold";
+                            marker = " ✗ (Your Answer)";
+                        }
+                        
+                        html += `<div style="color: ${color}; font-weight: ${weight}; padding: 0.5rem; background: ${optIdx === q.correct ? '#f0fff4' : optIdx === studentAns ? '#fff5f5' : '#f7fafc'}; border-radius: 0.25rem;">
+                            ${labels[optIdx]}. ${opt} ${marker}
+                        </div>`;
+                    });
+
+                    if (studentAns === null) {
+                        html += `<div style="color: var(--accent-red); font-weight: bold; margin-top: 0.5rem;">You left this question unanswered.</div>`;
+                    }
+
+                    html += `
+                        </div>
+                        <div class="explanation">
+                            <strong>Explanation:</strong> ${q.explanation}
+                        </div>
+                    `;
+                    
+                    item.innerHTML = html;
+                    list.appendChild(item);
+                }
+            });
+
+            if (hasIncorrect) {
+                document.getElementById('incorrect-answers-container').classList.remove('hidden');
+            } else {
+                document.getElementById('incorrect-answers-container').classList.add('hidden');
+            }
+        }
+
+        function buildReview() {
+            const list = document.getElementById('review-list');
+            list.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+
+            questions.forEach((q, i) => {
+                const studentAns = answers[i];
+                const isCorrect = studentAns === q.correct;
+                
+                const item = document.createElement('div');
+                item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                
+                let html = `
+                    <div style="font-weight: bold; color: var(--primary-color);">Question ${i + 1} (${q.section === 'A' ? 'Structure' : 'Written Expression'})</div>
+                    <div style="margin: 0.5rem 0 1rem 0; font-size: 1.1rem;">${q.text}</div>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                `;
+
+                q.options.forEach((opt, optIdx) => {
+                    let color = "inherit";
+                    let weight = "normal";
+                    let marker = "";
+                    
+                    if (optIdx === q.correct) {
+                        color = "var(--accent-green)";
+                        weight = "bold";
+                        marker = " ✓ (Correct Answer)";
+                    } else if (optIdx === studentAns) {
+                        color = "var(--accent-red)";
+                        weight = "bold";
+                        marker = " ✗ (Your Answer)";
+                    }
+                    
+                    html += `<div style="color: ${color}; font-weight: ${weight}; padding: 0.5rem; background: ${optIdx === q.correct ? '#f0fff4' : optIdx === studentAns ? '#fff5f5' : '#f7fafc'}; border-radius: 0.25rem;">
+                        ${labels[optIdx]}. ${opt} ${marker}
+                    </div>`;
+                });
+
+                if (studentAns === null) {
+                    html += `<div style="color: var(--accent-red); font-weight: bold; margin-top: 0.5rem;">You left this question unanswered.</div>`;
+                }
+
+                html += `
+                    </div>
+                    <div class="explanation">
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                `;
+                
+                item.innerHTML = html;
+                list.appendChild(item);
+            });
+        }
+
+        function showReview() {
+            document.getElementById('review-container').classList.remove('hidden');
+            document.getElementById('view-review-btn').classList.add('hidden');
+        }
+
+        function restartTest() {
+            // Reset state directly to avoid blocked confirm() modal
+            currentQuestionIndex = 0;
+            answers = new Array(50).fill(null);
+            studentName = "";
+            testDate = "";
+            timeLeft = 20 * 60;
+            if (timerInterval) clearInterval(timerInterval);
+
+            // Reset inputs
+            nameInput.value = '';
+            dateInput.value = '';
+            startBtn.disabled = true;
+
+            // Hide test/results and show login
+            resultsScreen.classList.add('hidden');
+            document.getElementById('incorrect-answers-container').classList.add('hidden');
+            document.getElementById('review-container').classList.add('hidden');
+            document.getElementById('view-review-btn').classList.remove('hidden');
+            testScreen.classList.add('hidden');
+            timerDisplay.classList.add('hidden');
+            loginScreen.classList.remove('hidden');
+            
+            window.scrollTo(0, 0);
+        }
+
+    </script>
+</body>
+</html>
